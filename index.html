@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<script>
+window.onload = function () {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
+	exportEnabled: true,
+	title:{
+		text: "Comparing delhi tempeerature with houston"
+	},
+	axisX: {
+		valueFormatString: "MMM"
+	},
+	axisY: {
+		prefix: "degree",
+		title: "Temperature"
+	},
+	toolTip: {
+		shared: true
+	},
+	legend: {
+		cursor: "pointer",
+		itemclick: toogleDataSeries
+	},
+	data: [{
+		type: "candlestick",
+		showInLegend: true,
+		name: "Delhi",
+		yValueFormatString: "###0",
+		xValueFormatString: "MMMM YY",
+		dataPoints: [
+			{ x: new Date(2016, 00, 01), y: [15.080002, 16.060001, 14.410000, 13.060001] },
+			{ x: new Date(2016, 01, 01), y: [18.040001, 17.500000, 16.790001, 18.950001] },
+			{ x: new Date(2016, 02, 01), y: [23.099998, 24.720001, 22.060001, 24.169998] },
+			{ x: new Date(2016, 03, 01), y: [29.669998, 30.360001, 31.730000, 30.820000] },
+			{ x: new Date(2016, 04, 01), y: [32.869999, 33.669998, 33.770000, 32.150002] },
+			{ x: new Date(2016, 05, 01), y: [35.099998, 34.419998, 36.580002, 35.209999] },
+			{ x: new Date(2016, 06, 01), y: [29.209999, 30.889999, 29.700001, 30.290001] },
+			{ x: new Date(2016, 07, 01), y: [28.250000, 27.500000, 29.549999, 28.880001] },
+			{ x: new Date(2016, 08, 01), y: [27.849998, 28.700001, 28.549999, 27.610001] },
+			{ x: new Date(2016, 09, 01), y: [25.619999, 24.040001, 26.270000, 25.790001] },
+			{ x: new Date(2016, 10, 01), y: [20.970001, 19.669998, 21.099998, 20.630001] },
+			{ x: new Date(2016, 11, 01), y: [17.630001, 18.840000, 18.160000, 17.380001] }
+		]
+	},
+	{
+		type: "candlestick",
+		showInLegend: true,
+		name: "hougton",
+		yValueFormatString: "###0",
+		dataPoints: [
+          { x: new Date(2016, 00, 01), y: [12.840000, 12.139999, 13.580002, 13.099998] },
+			{ x: new Date(2016, 01, 01), y: [14.669998, 15.990002, 16.790001, 15.970001] },
+			{ x: new Date(2016, 02, 01), y: [18.939999, 19.380001, 17.270000, 18.730000] },
+			{ x: new Date(2016, 03, 01), y: [21.990002, 22.369999, 23.980000, 21.080002] },
+			{ x: new Date(2016, 04, 01), y: [25.320000, 25.490002, 26.470001, 27.939999] },
+			{ x: new Date(2016, 05, 01), y: [27.220001, 28.700001, 27.049999, 28.900002] },
+			{ x: new Date(2016, 06, 01), y: [28.869999, 29.919998, 30.119999, 28.840000] },
+			{ x: new Date(2016, 07, 01), y: [29.849998, 29.950001, 30.439999, 30.410000] },
+			{ x: new Date(2016, 08, 01), y: [26.580002, 25.820000, 24.900002, 26.330002] },
+			{ x: new Date(2016, 09, 01), y: [22.139999, 23.880001, 21.020000, 21.980000] },
+			
+			{ x: new Date(2016, 10, 01), y: [14.320000, 13.200001, 12.009998, 14.900002] },
+			{ x: new Date(2016, 11, 01), y: [12.799999, 13.900002, 11.310001, 12.380001] }
+		]
+	}]
+});
+chart.render();
+
+function toogleDataSeries(e) {
+	if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+		e.dataSeries.visible = false;
+	} else {
+		e.dataSeries.visible = true;
+	}
+	e.chart.render();
+}
+
+}
+</script>
+</head>
+<body>
+<div id="chartContainer" style="height: 370px; max-width: 920px; margin: 0px auto;"></div>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+</html>
